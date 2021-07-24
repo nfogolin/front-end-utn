@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import ICompanyResponse from 'src/app/interfaces/responses/ICompanyResponse';
 import { CompanyDataService } from 'src/app/services/companyData.service';
+import * as jQuery from 'jquery';
 
 @Component({
   selector: 'app-footer',

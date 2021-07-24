@@ -1,22 +1,25 @@
 <mat-toolbar color="primary">
   <button mat-button [matMenuTriggerFor]="menu"><mat-icon>list</mat-icon></button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>Login</button>
-    <button mat-menu-item>Registrarse</button>
-    <button mat-menu-item>Ver Productos</button>
-    <button mat-menu-item>Actualizar Contraseña</button>
-    <button mat-menu-item>Logout</button>
+    <button *ngIf="!this.authService.isAuthenticate()" mat-menu-item (click)="loginUserGo()">Login</button>
+    <button *ngIf="!this.authService.isAuthenticate()" mat-menu-item (click)="createUserGo()">Registrarse</button>
+    <button *ngIf="this.authService.isAuthenticate()" mat-menu-item (click)="viewProductsGo()">Ver Productos</button>
+    <button *ngIf="this.authService.isAuthenticate()" mat-menu-item (click)="updatePasswordGo()">Actualizar Contraseña</button>
+    <button *ngIf="this.authService.isAuthenticate()" mat-menu-item (click)="logOut()">Logout</button>
   </mat-menu>
 
-  <span>Opciones</span>
+  <span class="tittlebar">Opciones</span>
   <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+  <span mat-icon-button class="example-icon tittlebar" aria-label="Example icon-button with share icon">
+    {{ this.dataServices.userName }}
+  </span>
+  <button *ngIf="this.authService.isAuthenticate()" (click)="updatePasswordGo()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon> vpn_key</mat-icon>
   </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+  <button *ngIf="!this.authService.isAuthenticate()" (click)="loginUserGo()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>https</mat-icon>
   </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+  <button *ngIf="this.authService.isAuthenticate()" (click)="logOut()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>power_settings_new</mat-icon>
   </button>
 </mat-toolbar>

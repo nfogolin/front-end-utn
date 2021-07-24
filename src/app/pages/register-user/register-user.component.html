@@ -1,0 +1,74 @@
+<mat-card class="my-card">
+    <mat-card-content>
+        <form [formGroup]="this.formRegisterUser" class="lgu-form">
+            <mat-form-field class="full-width">
+                <mat-label>Usuario {{ (this.isSubmmit && !this.formRegisterUser.controls['UserName'].valid ? '*':'') }}</mat-label>
+                <input matInput formControlName="UserName" placeholder="Usuario" name="UserName">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Password {{ (this.isSubmmit && !this.formRegisterUser.controls['Password'].valid ? '*':'') }}</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="Password" placeholder="Password" name="Password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Repetir Password {{ (this.isSubmmit && !this.formRegisterUser.controls['RepeatPassword'].valid ? '*':'') }}</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="RepeatPassword" placeholder="Password" name="RepeatPassword">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Nombre {{ (this.isSubmmit && !this.formRegisterUser.controls['Nombre'].valid ? '*':'') }}</mat-label>
+                <input matInput formControlName="Nombre" placeholder="Nombre" name="Nombre">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Fantasía {{ (this.isSubmmit && !this.formRegisterUser.controls['Fantasia'].valid ? '*':'') }}</mat-label>
+                <input matInput formControlName="Fantasia" placeholder="Fantasía" name="Fantasia">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Apellido {{ (this.isSubmmit && !this.formRegisterUser.controls['Apellido'].valid ? '*':'') }}</mat-label>
+                <input matInput formControlName="Apellido" placeholder="Apellido" name="Apellido">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Mail {{ (this.isSubmmit && !this.formRegisterUser.controls['Mail'].valid ? '*':'') }}</mat-label>
+                <input matInput formControlName="Mail" placeholder="Mail" name="Mail">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Cuit {{ (this.isSubmmit && !this.formRegisterUser.controls['Cuit'].valid ? '*':'') }}</mat-label>
+                <input matInput formControlName="Cuit" placeholder="Cuit" name="Cuit">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>País</mat-label>
+                <select matNativeControl formControlName="CountryId" (blur)="setProvinceSelect($event.target.value)">
+                    <option value="0">[Ninguno]</option>
+                    <option value="{{country.Id}}" *ngFor="let country of this.countries">
+                        {{country.Descript}}
+                    </option>
+                </select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Provincia</mat-label>
+                <select matNativeControl formControlName="ProvinceId" (blur)="setCitySelect($event.target.value)">
+                    <option value="0">[Ninguno]</option>
+                    <option value="{{province.Id}}" *ngFor="let province of this.provinces">
+                        {{province.Descript}}
+                    </option>
+                </select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Ciudad</mat-label>
+                <select matNativeControl formControlName="CityId">
+                    <option value="0">[Ninguno]</option>
+                    <option value="{{city.Id}}" *ngFor="let city of this.cities">
+                        {{city.Descript}}
+                    </option>
+                </select>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button [class.spinner]="this.loading" [disabled]="this.loading" (click)="createUserDo()" color="primary">REGISTRARSE</button>
+    </mat-card-actions>
+</mat-card>

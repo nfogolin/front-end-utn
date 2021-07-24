@@ -9,6 +9,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Modulos Para Lazy Loading:
 import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { FooterModule } from './components/footer/footer.module';
+import { LoginUserModule } from './pages/login-user/login-user.module';
+import { RegisterUserModule } from './pages/register-user/register-user.module';
+import { ProductsModule } from './pages/products/products.module';
+import { UpdatePasswordModule } from './pages/update-password/update-password.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { FooterModule } from './components/footer/footer.module';
     BrowserAnimationsModule,
     HttpClientModule,
     ToolbarModule,
-    FooterModule
+    FooterModule,
+    LoginUserModule,
+    RegisterUserModule,
+    ProductsModule,
+    UpdatePasswordModule
   ],
   providers: [],
   bootstrap: [AppComponent]

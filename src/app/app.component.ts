@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthorizationService } from './services/authorization.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AppGestion';
+
+  constructor(private authService : AuthorizationService){
+
+  }
+
+  ngOnInit():void{
+    this.authService.reactivateAuth();
+  }
 }
